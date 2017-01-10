@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.yun.yweb.orderitem.service.impl.OrderItemServiceImpl">
+    <resultMap id="orderItem" type="OrderItem">  
+        <id column="itemId" property="itemId" />
+        <result column="toUser" property="toUser" />  
+        <result column="itemCode" property="itemCode" />  
+        <result column="orderCode" property="orderCode" />  
+        <result column="createTime" property="createTime" />  
+        <result column="itemStatus" property="itemStatus" />  
+        <result column="successTime" property="successTime" />  
+        <result column="itemPrice" property="itemPrice" />
+        <result column="fromUser" property="fromUser" />
+        <result column="itemType" property="itemType" />
+        <result column="cashType" property="cashType" />
+        <result column="remark" property="remark" />
+        <result column="sourceCode" property="sourceCode" />
+        <result column="ysTime" property="ysTime" />
+    </resultMap>
+    
+   <!--查询点股-->
+   <select id="queryOrderItem" parameterType="OrderItem"  resultMap="orderItem">
+	    <![CDATA[
+	   		select * from order_item u where 1 = 1 
+	 	]]>
+	 	<if test="toUser != null and toUser != ''">
+			 <![CDATA[
+			   and u.toUser = #{toUser}
+			 ]]>
+		</if>
+		<if test="orderCode != null and orderCode != ''">
+			 <![CDATA[
+			   and u.orderCode = #{orderCode}
+			 ]]>
+		</if>
+		<if test="createTime != null and createTime != ''">
+			 <![CDATA[
+			   and u.createTime = #{createTime}
+			 ]]>
+		</if>
+		<if test="itemStatus != null and itemStatus != ''">
+			 <![CDATA[
+			   and u.itemStatus = #{itemStatus}
+			 ]]>
+		</if>
+		
+		<if test="fromUser != null and fromUser != ''">
+			 <![CDATA[
+			   and u.fromUser = #{fromUser}
+			 ]]>
+		</if>
+		<if test="itemType != null and itemType != ''">
+			 <![CDATA[
+			   and u.itemType = #{itemType}
+			 ]]>
+		</if>
+		<if test="cashType != null and cashType != ''">
+			 <![CDATA[
+			   and u.cashType = #{cashType}
+			 ]]>
+		</if>
+		<if test="sourceCode != null and sourceCode != ''">
+			 <![CDATA[
+			   and u.sourceCode = #{sourceCode}
+			 ]]>
+		</if>
+   </select>
+   
+   <insert id="addOrderItem" parameterType="OrderItem">
+	 insert into order_item 
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+	 	 <if test="toUser != null" >
+	       toUser,
+	     </if>
+	     <if test="itemId != null" >
+	       itemId,
+	     </if>
+	     <if test="itemCode != null" >
+	       itemCode,
+	     </if>
+	     <if test="orderCode != null" >
+	       orderCode,
+	     </if>
+	     <if test="createTime != null" >
+	       createTime,
+	     </if>
+	     <if test="itemStatus != null" >
+	       itemStatus,
+	     </if>
+	     <if test="successTime != null" >
+	       successTime,
+	     </if>
+	     <if test="itemPrice != null" >
+	       itemPrice,
+	     </if>
+	     <if test="fromUser != null" >
+	       fromUser,
+	     </if>
+	     <if test="itemType != null" >
+	       itemType,
+	     </if>
+	     <if test="cashType != null" >
+	       cashType,
+	     </if>
+	     <if test="remark != null" >
+	       remark,
+	     </if>
+	     <if test="sourceCode != null" >
+	       sourceCode,
+	     </if>
+	     <if test="ysTime != null" >
+	       ysTime,
+	     </if>
+	     
+	   </trim>
+	   <trim prefix="values (" suffix=")" suffixOverrides="," >
+	     <if test="toUser != null" >
+	       #{toUser},
+	     </if>
+	     <if test="itemId != null" >
+	       #{itemId},
+	     </if>
+	     <if test="itemCode != null" >
+	       #{itemCode},
+	     </if>
+	     <if test="orderCode != null" >
+	       #{orderCode},
+	     </if>
+	     <if test="createTime != null" >
+	       #{createTime},
+	     </if>
+	     <if test="itemStatus != null" >
+	       #{itemStatus},
+	     </if>
+	     <if test="successTime != null" >
+	       #{successTime},
+	     </if>
+	     <if test="itemPrice != null" >
+	       #{itemPrice},
+	     </if>
+	     <if test="fromUser != null" >
+	       #{fromUser},
+	     </if>
+	     <if test="itemType != null" >
+	       #{itemType},
+	     </if>
+	     <if test="cashType != null" >
+	       #{cashType},
+	     </if>
+	     <if test="remark != null" >
+	       #{remark},
+	     </if>
+	     <if test="sourceCode != null" >
+	       #{sourceCode},
+	     </if>
+	     <if test="ysTime != null" >
+	       #{ysTime},
+	     </if>
+	   </trim>
+	</insert>
+	
+	<!--统计团队分红-->
+   <select id="queryOrderItemCount" parameterType="OrderItem"  resultType="java.util.HashMap">
+	    <![CDATA[
+	   		select sum(itemPrice) as countPrice,oi.toUser,oi.ysTime from order_item oi where 1 = 1 
+	 	]]>
+	 	
+		<if test="itemStatus != null and itemStatus != ''">
+			 <![CDATA[
+			   and oi.itemStatus = #{itemStatus}
+			 ]]>
+		</if>
+		<if test="itemType != null and itemType != ''">
+			 <![CDATA[
+			   and oi.itemType = #{itemType}
+			 ]]>
+		</if>
+		<if test="cashType != null and cashType != ''">
+			 <![CDATA[
+			   and oi.cashType = #{cashType}
+			 ]]>
+		</if>
+		GROUP BY oi.toUser,oi.ysTime
+   </select>
+   
+   <update id="updateOrderItem" parameterType="OrderItemExtend">
+	
+	   update order_item 
+	   	<trim prefix="SET" suffixOverrides=",">
+	   		<if test="itemStatus != null">
+	   			itemStatus=#{itemStatus},
+	   		</if>
+	   		<if test="orderCode != null">
+	   			orderCode=#{orderCode},
+	   		</if>
+	   	</trim>
+	    where 1=1 
+	    <if test="toUser != null and toUser != ''">
+			 <![CDATA[
+			   and toUser = #{toUser}
+			 ]]>
+		</if>
+		<if test="oldItemStatus != null and oldItemStatus != ''">
+			 <![CDATA[
+			   and itemStatus = #{oldItemStatus}
+			 ]]>
+		</if>
+		<if test="itemType != null and itemType != ''">
+			 <![CDATA[
+			   and itemType = #{itemType}
+			 ]]>
+		</if>
+		<if test="ysTime != null and ysTime != ''">
+			 <![CDATA[
+			   and ysTime = #{ysTime}
+			 ]]>
+		</if>
+
+	</update>
+   
+</mapper>

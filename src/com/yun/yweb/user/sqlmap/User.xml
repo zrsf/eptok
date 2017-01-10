@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.yun.yweb.user.service.impl.UserServiceImpl">
+	 <!--配置一个resultMap 指定返回的类型 -->  
+    <resultMap id="user" type="User">  
+        <id column="userCode" property="userCode" />
+        <result column="createTime" property="createTime" />  
+        <result column="creatorUser" property="creatorUser" />  
+        <result column="dayPwderrorNum" property="dayPwderrorNum" />  
+        <result column="email" property="email" />  
+        <result column="lastLoginTime" property="lastLoginTime" />  
+        <result column="loginIp" property="loginIp" />  
+        <result column="loginMac" property="loginMac" />  
+        <result column="loginPwd" property="loginPwd" />  
+        <result column="loginTime" property="loginTime" />  
+        <result column="mobile" property="mobile" />  
+        <result column="officeTel" property="officeTel" />  
+        <result column="parentUsercode" property="parentUsercode" />  
+        <result column="pwdErrorNum" property="pwdErrorNum" />  
+        <result column="pwdErrorTime" property="pwdErrorTime" /> 
+        <result column="pwdInvalid" property="pwdInvalid" /> 
+        <result column="secondPwd" property="secondPwd" /> 
+        <result column="state" property="state" />  
+        <result column="userName" property="userName" />  
+        <result column="nickName" property="nickName" />
+        <result column="idNo" property="idNo" />
+        <result column="qqNumber" property="qqNumber" />
+        <result column="weixinNumber" property="weixinNumber" />
+        <result column="bankType" property="bankType" />
+        <result column="bankNo" property="bankNo" />
+        <result column="bankOwner" property="bankOwner" />
+        <result column="bankAddress" property="bankAddress" />
+        <result column="userType" property="userType" />
+    </resultMap>
+    <resultMap id="userTemp" type="UserTemp">  
+        <id column="userCode" property="userCode" />
+        <result column="userName" property="userName" />  
+        <result column="loginPwd" property="loginPwd" /> 
+        <result column="state" property="state" /> 
+        <result column="email" property="email" />  
+        <result column="mobile" property="mobile" /> 
+        <result column="officeTel" property="officeTel" /> 
+        <result column="creatorId" property="creatorId" /> 
+        <result column="createTime" property="createTime" /> 
+        <result column="creatorName" property="creatorName" /> 
+        <result column="secondPwd" property="secondPwd" /> 
+        <result column="parentUsercode" property="parentUsercode" />  
+        <result column="nickName" property="nickName" />
+        <result column="idNo" property="idNo" />
+        <result column="qqNumber" property="qqNumber" />
+        <result column="weixinNumber" property="weixinNumber" />
+        <result column="bankType" property="bankType" />
+        <result column="bankNo" property="bankNo" />
+        <result column="bankOwner" property="bankOwner" />
+        <result column="bankAddress" property="bankAddress" />
+        <result column="userType" property="userType" />
+    </resultMap> 
+    
+   <!--查询用户-->
+   <select id="queryUser" parameterType="User"  resultMap="user">
+	    <![CDATA[
+	   		select * from d_user_info u where 1 = 1 
+	 	]]>
+	 	<if test="userName != null and userName != ''">
+			 <![CDATA[
+			   and u.userName = #{userName}
+			 ]]>
+		</if>
+		<if test="loginPwd != null and loginPwd != ''">
+			 <![CDATA[
+			   and u.loginPwd = #{loginPwd}
+			 ]]>
+		</if>
+		<if test="state != null and state != ''">
+			 <![CDATA[
+			   and u.state = #{state}
+			 ]]>
+		</if>
+		<if test="secondPwd != null and secondPwd != ''">
+			 <![CDATA[
+			   and u.secondPwd = #{secondPwd}
+			 ]]>
+		</if>
+		<if test="userCode != null and userCode != ''">
+			 <![CDATA[
+			   and u.userCode = #{userCode}
+			 ]]>
+		</if>
+   </select>
+   
+   <!--查询临时用户-->
+   <select id="queryUserTemp" parameterType="UserTemp"  resultMap="userTemp">
+	    <![CDATA[
+	   		select * from d_user_temp u where 1 = 1 
+	 	]]>
+	 	<if test="parentUsercode != null and parentUsercode != ''">
+			 <![CDATA[
+			   and u.parentUsercode = #{parentUsercode}
+			 ]]>
+		</if>
+		<if test="state != null and state != ''">
+			 <![CDATA[
+			   and u.state = #{state}
+			 ]]>
+		</if>
+		<if test="userCode != null and userCode != ''">
+			 <![CDATA[
+			   and u.userCode = #{userCode}
+			 ]]>
+		</if>
+   </select>
+   
+   <select id="findSplitPage" resultType="user" parameterType="user">
+		SELECT * FROM d_user_info u where 1=1
+	    <if test="userName != null and userName != ''" >
+       	    AND u.userName = #{userName} 
+        </if> 
+        <if test="loginPwd != null and loginPwd != ''" >
+       	    AND u.loginPwd = #{loginPwd} 
+        </if>
+	</select>
+	
+	<insert id="addUserTemp" parameterType="UserTemp">
+	 insert into d_user_temp 
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+	 	 <if test="userCode != null" >
+	       userCode,
+	     </if>
+	     <if test="userName != null" >
+	       userName,
+	     </if>
+	     <if test="loginPwd != null" >
+	       loginPwd,
+	     </if>
+	     <if test="state != null" >
+	       state,
+	     </if>
+	     <if test="email != null" >
+	       email,
+	     </if>
+	     <if test="mobile != null" >
+	       mobile,
+	     </if>
+	     <if test="officeTel != null" >
+	       officeTel,
+	     </if>
+	     <if test="creatorId != null" >
+	       creatorId,
+	     </if>
+	     <if test="createTime != null" >
+	       createTime,
+	     </if>
+	     <if test="creatorName != null" >
+	       creatorName,
+	     </if>
+	     <if test="secondPwd != null" >
+	       secondPwd,
+	     </if>
+	     <if test="parentUsercode != null" >
+	       parentUsercode,
+	     </if>
+	     <if test="nickName != null" >
+	       nickName,
+	     </if>
+	     <if test="idNo != null" >
+	       idNo,
+	     </if>
+	     <if test="qqNumber != null" >
+	       qqNumber,
+	     </if>
+	     <if test="weixinNumber != null" >
+	       weixinNumber,
+	     </if>
+	     <if test="bankType != null" >
+	       bankType,
+	     </if>
+	     <if test="bankNo != null" >
+	       bankNo,
+	     </if>
+	     <if test="bankOwner != null" >
+	       bankOwner,
+	     </if>
+	     <if test="bankAddress != null" >
+	       bankAddress,
+	     </if>
+	     <if test="userType != null" >
+	       userType,
+	     </if>
+	   </trim>
+	   <trim prefix="values (" suffix=")" suffixOverrides="," >
+	     <if test="userCode != null" >
+	       #{userCode},
+	     </if>
+	     <if test="userName != null" >
+	       #{userName},
+	     </if>
+	     <if test="loginPwd != null" >
+	       #{loginPwd},
+	     </if>
+	     <if test="state != null" >
+	       #{state},
+	     </if>
+	     <if test="email != null" >
+	       #{email},
+	     </if>
+	     <if test="mobile != null" >
+	       #{mobile},
+	     </if>
+	     <if test="officeTel != null" >
+	       #{officeTel},
+	     </if>
+	     <if test="creatorId != null" >
+	       #{creatorId},
+	     </if>
+	     <if test="createTime != null" >
+	       #{createTime},
+	     </if>
+	     <if test="creatorName != null" >
+	       #{creatorName},
+	     </if>
+	     <if test="secondPwd != null" >
+	       #{secondPwd},
+	     </if>
+	     <if test="parentUsercode != null" >
+	       #{parentUsercode},
+	     </if>
+	     <if test="nickName != null" >
+	       #{nickName},
+	     </if>
+	     <if test="idNo != null" >
+	       #{idNo},
+	     </if>
+	     <if test="qqNumber != null" >
+	       #{qqNumber},
+	     </if>
+	     <if test="weixinNumber != null" >
+	       #{weixinNumber},
+	     </if>
+	     <if test="bankType != null" >
+	       #{bankType},
+	     </if>
+	     <if test="bankNo != null" >
+	       #{bankNo},
+	     </if>
+	     <if test="bankOwner != null" >
+	       #{bankOwner},
+	     </if>
+	     <if test="bankAddress != null" >
+	       #{bankAddress},
+	     </if>
+	     <if test="userType != null" >
+	       #{userType},
+	     </if>
+	   </trim>
+	</insert>
+	
+	<update id="updateUserTemp" parameterType="UserTemp">
+	
+	   update d_user_temp 
+	   	<trim prefix="SET" suffixOverrides=",">
+	   		<if test="state != null">
+	   			state=#{state},
+	   		</if>
+	   		<if test="approveUser != null">
+	   			approveUser=#{approveUser},
+	   		</if>
+	   		<if test="approveTime != null">
+	   			approveTime=#{approveTime},
+	   		</if>
+	   	</trim>
+	    where userCode = #{userCode}
+
+	</update>
+	
+	<insert id="addUser" parameterType="User">
+	 insert into d_user_info 
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+	 	 <if test="userCode != null" >
+	       userCode,
+	     </if>
+	     <if test="userName != null" >
+	       userName,
+	     </if>
+	     <if test="loginPwd != null" >
+	       loginPwd,
+	     </if>
+	     <if test="state != null" >
+	       state,
+	     </if>
+	     <if test="email != null" >
+	       email,
+	     </if>
+	     <if test="mobile != null" >
+	       mobile,
+	     </if>
+	     <if test="officeTel != null" >
+	       officeTel,
+	     </if>
+	     <if test="createTime != null" >
+	       createTime,
+	     </if>
+	     <if test="creatorUser != null" >
+	       creatorUser,
+	     </if>
+	     <if test="secondPwd != null" >
+	       secondPwd,
+	     </if>
+	     <if test="parentUsercode != null" >
+	       parentUsercode,
+	     </if>
+	     <if test="nickName != null" >
+	       nickName,
+	     </if>
+	     <if test="idNo != null" >
+	       idNo,
+	     </if>
+	     <if test="qqNumber != null" >
+	       qqNumber,
+	     </if>
+	     <if test="weixinNumber != null" >
+	       weixinNumber,
+	     </if>
+	     <if test="bankType != null" >
+	       bankType,
+	     </if>
+	     <if test="bankNo != null" >
+	       bankNo,
+	     </if>
+	     <if test="bankOwner != null" >
+	       bankOwner,
+	     </if>
+	     <if test="bankAddress != null" >
+	       bankAddress,
+	     </if>
+	     <if test="userType != null" >
+	       userType,
+	     </if>
+	   </trim>
+	   <trim prefix="values (" suffix=")" suffixOverrides="," >
+	     <if test="userCode != null" >
+	       #{userCode},
+	     </if>
+	     <if test="userName != null" >
+	       #{userName},
+	     </if>
+	     <if test="loginPwd != null" >
+	       #{loginPwd},
+	     </if>
+	     <if test="state != null" >
+	       #{state},
+	     </if>
+	     <if test="email != null" >
+	       #{email},
+	     </if>
+	     <if test="mobile != null" >
+	       #{mobile},
+	     </if>
+	     <if test="officeTel != null" >
+	       #{officeTel},
+	     </if>
+	     <if test="createTime != null" >
+	       #{createTime},
+	     </if>
+	     <if test="creatorUser != null" >
+	       #{creatorUser},
+	     </if>
+	     <if test="secondPwd != null" >
+	       #{secondPwd},
+	     </if>
+	     <if test="parentUsercode != null" >
+	       #{parentUsercode},
+	     </if>
+	     <if test="nickName != null" >
+	       #{nickName},
+	     </if>
+	     <if test="idNo != null" >
+	       #{idNo},
+	     </if>
+	     <if test="qqNumber != null" >
+	       #{qqNumber},
+	     </if>
+	     <if test="weixinNumber != null" >
+	       #{weixinNumber},
+	     </if>
+	     <if test="bankType != null" >
+	       #{bankType},
+	     </if>
+	     <if test="bankNo != null" >
+	       #{bankNo},
+	     </if>
+	     <if test="bankOwner != null" >
+	       #{bankOwner},
+	     </if>
+	     <if test="bankAddress != null" >
+	       #{bankAddress},
+	     </if>
+	     <if test="userType != null" >
+	       #{userType},
+	     </if>
+	   </trim>
+	</insert>
+   
+</mapper>

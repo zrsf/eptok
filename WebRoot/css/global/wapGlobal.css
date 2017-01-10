@@ -1,0 +1,280 @@
+/*!
+ * wapGlobal.css v1.01
+ * Author XiaoMai.
+ *time 2016-07-05
+ */
+
+/**********globle**********/
+body {
+	background: #f2f2f2;
+}
+
+/********** bootstrap **********/
+.btn-primary {
+    background-color: #3a84cf;
+    border-color: #3a84cf;
+}
+.e-sales .btn {
+    width: 100%;
+    position: relative;
+}
+
+/********** theme **********/
+.e-block-bg {
+	background: #fff;
+}
+.e-block-marb6{
+	margin-bottom: 6px;
+}
+.e-borderb-e9 {
+	border-bottom: 1px solid #e9e9e9;
+}
+
+/******************** 充值 ********************/
+/********** bootstrap **********/
+
+/* 充值导航  */
+.nav-tabs {
+    border-bottom: none;
+}
+
+.nav-tabs.e-nav-tabs>li {
+	width: 33.33%;
+}
+.nav-tabs.e-nav-tabs2>li {
+	width: 50%;
+	border-right: 1px solid #e9e9e9;
+}
+
+.nav-tabs>li>a{
+	color: #555;
+	font-size: 15px;
+}
+.list-inline.e-nav-tabs3a {
+	margin-left: 0;
+}
+.e-nav-tabs3a li {
+	width: 50%;
+}
+.e-nav-tabs3a li a {
+	width: 100%;
+}
+.e-nav-tabs3a li a.btn {
+	padding: 6px 12px;
+}
+.nav-tabs.e-nav-tabs3a > li > a {
+    margin-right: 2px;
+    line-height: 1.42857143;
+    border: 1px solid #e3e3e3;
+    border-radius: 0;
+	position: relative;
+}
+.nav-tabs.e-nav-tabs3a > li > a > i {
+	color: #e3e3e3;
+}
+.nav-tabs.e-nav-tabs3a > li > a.e-gas-active i {
+	color: #3a84cf;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+    color: #3a84cf;
+    cursor: default;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-bottom-color: #3a84cf;
+}
+.nav-tabs.e-nav-tabs2>li.active>a, .nav-tabs.e-nav-tabs2>li.active>a:focus, .nav-tabs.e-nav-tabs2>li.active>a:hover {
+    border: none;
+    border-bottom-color: transparent;
+    text-decoration: none;
+}
+.nav-tabs.e-nav-tabs3>li.active>a, .nav-tabs.e-nav-tabs3>li.active>a:focus, .nav-tabs.e-nav-tabs3>li.active>a:hover {
+    border: 1px solid transparent;
+    border-bottom-color: transparent;
+    text-decoration: none;
+}
+
+.nav-tabs.e-nav-tabs3a>li.active>a, .nav-tabs.e-nav-tabs3a>li.active>a:focus, .nav-tabs.e-nav-tabs3a>li.active>a:hover {
+    border: 1px solid #3a84cf;
+    border-bottom-color: #3a84cf;
+    border-radius: 0;
+    text-decoration: none;
+}
+.nav-tabs.e-nav-tabs3a > li > a.e-gas-active {
+	border: 1px solid #3a84cf; 
+}
+
+.e-sales .col-xs-4 {
+	margin: 3px auto;
+}
+
+/* 按钮 */
+.btn-default.e-btn-default.active.focus, .btn-default.e-btn-default.active:focus, .btn-default.e-btn-default.active:hover, .btn-default.e-btn-default:active.focus, .btn-default.e-btn-default:active:focus, .btn-default.e-btn-default:active:hover {
+    color: #fff;
+    background-color: #3a84cf;
+    border-color: #3a84cf;
+}
+.btn-default.e-btn-default:hover,.btn-default.e-btn-default:hover i {
+    color: #fff;
+    background-color: #3a84cf;
+    border-color: #3a84cf;
+}
+a.e-active {
+	color: #fff;
+    background-color: #3a84cf;
+}
+
+.btn{
+	border-radius: 0;
+}
+ a.btn.e-btn-default{
+ 	width: 100%;
+ 	padding: 6px 2px;
+	border-color: #e9e9e9;
+ }
+ a.e-btn-default em{
+	font-size: 18px;
+}
+a.e-btn-default i {
+	font-size: 12px;
+	color: #999;
+} 
+ a.e-btn-default span{
+	font-size: 15px;
+}
+a.e-btn-default.e-active i {
+	color: #fff;
+}
+/********** theme **********/
+
+/* 内边距 */
+.e-padtb {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.e-padtb4 {
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+
+
+/* 充值号码输入 */
+.form-control:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.form-control.e-form-phone,.form-control.e-form-gas {
+	border: none;
+	padding: 6px 72px 6px 12px;
+	outline: none;
+	font-size: 20px;
+	border-radius: 4px; 
+    -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.075); 
+    box-shadow: inset 0 0px 0px rgba(0,0,0,.075);  
+}
+.btn.e-btn-conn {
+	border: none;
+	padding: 6px 12px;
+}
+.btn.active, .btn:active {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.125);
+    box-shadow: inset 0 0px 0px rgba(0,0,0,.125);
+}
+/* 实付款 */
+.e-pay-box {
+	margin-bottom: 6px;
+	margin-top: 18px;
+}
+.e-pay {
+	color: #ff8813;
+	font-size: 18px;
+}
+/* 支付按钮 */
+.btn-primary.e-pay-go {
+	font-size: 18px;
+	width: 100%;
+}
+.btn-primary.e-pay-go.active.focus, .btn-primary.e-pay-go.active:focus, .btn-primary.e-pay-go.active:hover, .btn-primary.e-pay-go:active.focus, .btn-primary.e-pay-go:active:focus, .btn-primary.e-pay-go:active:hover {
+    color: #fff;
+    background-color: #3a84cf;
+    border-color: #3a84cf;
+}
+.btn-primary.e-pay-go:hover {
+    color: #fff;
+    background-color: #3a84cf;
+    border-color: #3a84cf;
+}
+/* 区域范围 */
+.nav-tabs.e-nav-tabs3>li {
+	line-height: 38px;
+	font-size: 16px;
+}
+.fa-circle-o {
+	color: #b3b3b3;
+	margin-right: 4px;
+}
+.fa-dot-circle-o {
+	color: #3a84cf;
+	margin-right: 4px;
+}
+.e-region-info {
+	color: #3a84cf;
+	line-height: 18px;
+}
+/* 加油卡输入框 */
+.form-group.e-form-gas-box {
+	margin-bottom: 0;
+}
+.e-gas {
+	width: 36px;
+	height: 36px;
+}
+p.e-gas-tit {
+	margin-bottom: 0;
+	font-size: 16px;
+}
+.e-gas-txt {
+	font-size: 12px;
+	color: #a3a3a3;
+}
+/*充值类型*/
+.input-group-addon {
+    color: #3d4245;
+    background-color: #fff;
+    border: 1px solid #fff;
+    border-radius: 0;
+    font-size: 16px;
+}
+.form-control.e-type-qb[disabled], .form-control.e-type-qb[readonly], fieldset.e-type-qb[disabled] .form-control.e-type-qb {
+    background-color: #fff;
+}
+.form-control.e-type-qb {
+	color: #a1a1a1;
+	border: 1px solid #fff;
+	-webkit-box-shadow: inset 0 0px 0px rgba(0,0,0,.075);
+    box-shadow: inset 0 0px 0px rgba(0,0,0,.075);
+}
+.e-angle {
+	color: #a1a1a1;
+}
+
+/* 模态窗 */
+.modal-dialog {
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    bottom: 0;
+    left: 0;
+}
+.modal-content {
+	border-radius: 0;
+	border: 1px solid #fff;
+}
+.modal-body.e-modal-body {
+	height: 236px; 
+	overflow-y: scroll; 
+	overflow-x: hidden; 
+	border-bottom: 10px solid #fff;
+}

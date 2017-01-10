@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.yun.yweb.netfeerecord.service.impl.NetfeeRecordServiceImpl">
+    <resultMap id="netfeeRecord" type="NetfeeRecord">  
+        <id column="recordId" property="recordId" />
+        <result column="userCode" property="userCode" />  
+        <result column="state" property="state" />  
+        <result column="createTime" property="createTime" />  
+        <result column="nextChargeTime" property="nextChargeTime" />  
+        <result column="chargeCash" property="chargeCash" />  
+        <result column="recordCode" property="recordCode" />  
+    </resultMap>
+    
+   <!--查询点股-->
+   <select id="queryNetfeeRecord" parameterType="NetfeeRecord"  resultMap="netfeeRecord">
+	    <![CDATA[
+	   		select * from netfee_record u where 1 = 1 
+	 	]]>
+	 	<if test="userCode != null and userCode != ''">
+			 <![CDATA[
+			   and u.userCode = #{userCode}
+			 ]]>
+		</if>
+		<if test="recordId != null and recordId != ''">
+			 <![CDATA[
+			   and u.recordId = #{recordId}
+			 ]]>
+		</if>
+		<if test="state != null and state != ''">
+			 <![CDATA[
+			   and u.state = #{state}
+			 ]]>
+		</if>
+		<if test="nextChargeTime != null and nextChargeTime != ''">
+			 <![CDATA[
+			   and u.nextChargeTime = #{nextChargeTime}
+			 ]]>
+		</if>
+   </select>
+   
+   <insert id="addNetfeeRecord" parameterType="NetfeeRecord">
+	 insert into netfee_record 
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+	 	 <if test="userCode != null" >
+	       userCode,
+	     </if>
+	     <if test="recordId != null" >
+	       recordId,
+	     </if>
+	     <if test="state != null" >
+	       state,
+	     </if>
+	     <if test="createTime != null" >
+	       createTime,
+	     </if>
+	     <if test="nextChargeTime != null" >
+	       nextChargeTime,
+	     </if>
+	     <if test="chargeCash != null" >
+	       chargeCash,
+	     </if>
+	     <if test="recordCode != null" >
+	       recordCode,
+	     </if>
+	   </trim>
+	   <trim prefix="values (" suffix=")" suffixOverrides="," >
+	     <if test="userCode != null" >
+	       #{userCode},
+	     </if>
+	     <if test="recordId != null" >
+	       #{recordId},
+	     </if>
+	     <if test="state != null" >
+	       #{state},
+	     </if>
+	     <if test="createTime != null" >
+	       #{createTime},
+	     </if>
+	     <if test="nextChargeTime != null" >
+	       #{nextChargeTime},
+	     </if>
+	     <if test="chargeCash != null" >
+	       #{chargeCash},
+	     </if>
+	     <if test="recordCode != null" >
+	       #{recordCode},
+	     </if>
+	   </trim>
+	</insert>
+   
+</mapper>

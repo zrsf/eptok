@@ -1,0 +1,43 @@
+/*!
+ * sly_theme.css v1.01
+ * Author XiaoMai.
+ *time 2016-10-14
+ */
+/* sly 滚动插件 */
+.wrap {
+    margin: auto;
+}
+.frame {
+    height: 70px;
+    line-height: 70px;
+}
+.frame ul {
+    font-size: 16px;
+}
+.controls {
+    margin: 18px 0;
+}
+.frame ul li {
+    width: 191px;
+    /* background: transparent; */
+
+}
+.frame ul li.active {
+    color: #fff;
+    /* background: transparent; */
+}
+
+/* 二级导航 */
+ul.list_ul {
+	margin: 0;
+	padding: 0;
+}
+.list_ul li {
+	display: inline-block;
+    padding: 0 10px;
+    margin-right: 8px;
+    line-height: 38px;
+}
+.list_ul li a {
+	font-size: 16px;
+}

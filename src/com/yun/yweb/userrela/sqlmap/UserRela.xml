@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.yun.yweb.userrela.service.impl.UserRelaServiceImpl">
+    <resultMap id="userRela" type="UserRela">  
+        <id column="userRelaId" property="userRelaId" />
+        <result column="ancestor" property="ancestor" />  
+        <result column="descendant" property="descendant" />  
+        <result column="state" property="state" />  
+        <result column="createTime" property="createTime" />  
+        <result column="auditTime" property="auditTime" />  
+        <result column="nextIncomeTime" property="nextIncomeTime" />  
+        <result column="incomeCash" property="incomeCash" />
+        <result column="lvl" property="lvl" />
+        <result column="userRelaCode" property="userRelaCode" />
+        
+    </resultMap>
+    
+   <!--查询点股-->
+   <select id="queryUserRela" parameterType="UserRelaExtend"  resultMap="userRela">
+	    <![CDATA[
+	   		select * from user_rela u where 1 = 1 
+	 	]]>
+	 	<if test="ancestor != null and ancestor != ''">
+			 <![CDATA[
+			   and u.ancestor = #{ancestor}
+			 ]]>
+		</if>
+		<if test="descendant != null and descendant != ''">
+			 <![CDATA[
+			   and u.descendant = #{descendant}
+			 ]]>
+		</if>
+		<if test="state != null and state != ''">
+			 <![CDATA[
+			   and u.state = #{state}
+			 ]]>
+		</if>
+		<if test="maxNextIncomeTime != null and maxNextIncomeTime != ''">
+			 <![CDATA[
+			   and u.nextIncomeTime <= #{maxNextIncomeTime}
+			 ]]>
+		</if>
+		<if test="maxLvl != null and maxLvl != ''">
+			 <![CDATA[
+			   and u.lvl <= #{maxLvl}
+			 ]]>
+		</if>
+		<if test="!isContainItself">
+			 <![CDATA[
+			   and u.ancestor != '-1'
+			 ]]>
+		</if>
+   </select>
+   
+   <insert id="addUserRela" parameterType="UserRela">
+	 insert into user_rela 
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+	 	 <if test="ancestor != null" >
+	       ancestor,
+	     </if>
+	     <if test="descendant != null" >
+	       descendant,
+	     </if>
+	     <if test="userRelaId != null" >
+	       userRelaId,
+	     </if>
+	     <if test="state != null" >
+	       state,
+	     </if>
+	     <if test="createTime != null" >
+	       createTime,
+	     </if>
+	     <if test="auditTime != null" >
+	       auditTime,
+	     </if>
+	     <if test="nextIncomeTime != null" >
+	       nextIncomeTime,
+	     </if>
+	     <if test="incomeCash != null" >
+	       incomeCash,
+	     </if>
+	     <if test="lvl != null" >
+	       lvl,
+	     </if>
+	     <if test="userRelaCode != null" >
+	       userRelaCode,
+	     </if>
+	     
+	   </trim>
+	   <trim prefix="values (" suffix=")" suffixOverrides="," >
+	     <if test="ancestor != null" >
+	       #{ancestor},
+	     </if>
+	     <if test="descendant != null" >
+	       #{descendant},
+	     </if>
+	     <if test="userRelaId != null" >
+	       #{userRelaId},
+	     </if>
+	     <if test="state != null" >
+	       #{state},
+	     </if>
+	     <if test="createTime != null" >
+	       #{createTime},
+	     </if>
+	     <if test="auditTime != null" >
+	       #{auditTime},
+	     </if>
+	     <if test="nextIncomeTime != null" >
+	       #{nextIncomeTime},
+	     </if>
+	     <if test="incomeCash != null" >
+	       #{incomeCash},
+	     </if>
+	     <if test="lvl != null" >
+	       #{lvl},
+	     </if>
+	     <if test="userRelaCode != null" >
+	       #{userRelaCode},
+	     </if>
+	   </trim>
+	</insert>
+	
+	<update id="updateUserRela" parameterType="UserRela">
+	
+	   update user_rela 
+	   	<trim prefix="SET" suffixOverrides=",">
+	   		<if test="nextIncomeTime != null">
+	   			nextIncomeTime=#{nextIncomeTime},
+	   		</if>
+	   		<if test="state != null">
+	   			state=#{state},
+	   		</if>
+	   	</trim>
+	    where userRelaCode = #{userRelaCode}
+
+	</update>
+	
+	
+   
+</mapper>
