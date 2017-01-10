@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.yun.yweb.userstock.service.impl.UserStockServiceImpl">
+    <resultMap id="userStock" type="UserStock">  
+        <id column="stockId" property="stockId" />
+        <result column="userCode" property="userCode" />  
+        <result column="stockCode" property="stockCode" />  
+        <result column="state" property="state" />  
+        <result column="createTime" property="createTime" />  
+        <result column="nextIncomeTime" property="nextIncomeTime" />  
+        <result column="incomeCash" property="incomeCash" />
+        <result column="incomeCs" property="incomeCs" />
+    </resultMap>
+    
+   <!--查询点股-->
+   <select id="queryUserStock" parameterType="UserStock"  resultMap="userStock">
+	    <![CDATA[
+	   		select * from user_stock u where 1 = 1 
+	 	]]>
+	 	<if test="userCode != null and userCode != ''">
+			 <![CDATA[
+			   and u.userCode = #{userCode}
+			 ]]>
+		</if>
+		<if test="state != null and state != ''">
+			 <![CDATA[
+			   and u.state = #{state}
+			 ]]>
+		</if>
+		<if test="stockId != null and stockId != ''">
+			 <![CDATA[
+			   and u.stockId = #{stockId}
+			 ]]>
+		</if>
+		<if test="stockCode != null and stockCode != ''">
+			 <![CDATA[
+			   and u.stockCode = #{stockCode}
+			 ]]>
+		</if>
+		<if test="maxNextIncomeTime != null and maxNextIncomeTime != ''">
+			 <![CDATA[
+			   and u.nextIncomeTime < #{maxNextIncomeTime}
+			 ]]>
+		</if>
+		<if test="maxIncomeCs != null and maxIncomeCs != ''">
+			 <![CDATA[
+			   and u.incomeCs < #{maxIncomeCs}
+			 ]]>
+		</if>
+   </select>
+   
+   <insert id="addUserStock" parameterType="UserStock">
+	 insert into user_stock 
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+	 	 <if test="userCode != null" >
+	       userCode,
+	     </if>
+	     <if test="stockId != null" >
+	       stockId,
+	     </if>
+	     <if test="stockCode != null" >
+	       stockCode,
+	     </if>
+	     <if test="state != null" >
+	       state,
+	     </if>
+	     <if test="createTime != null" >
+	       createTime,
+	     </if>
+	     <if test="nextIncomeTime != null" >
+	       nextIncomeTime,
+	     </if>
+	     <if test="incomeCash != null" >
+	       incomeCash,
+	     </if>
+	     <if test="incomeCs != null" >
+	       incomeCs,
+	     </if>
+	   </trim>
+	   <trim prefix="values (" suffix=")" suffixOverrides="," >
+	     <if test="userCode != null" >
+	       #{userCode},
+	     </if>
+	     <if test="stockId != null" >
+	       #{stockId},
+	     </if>
+	     <if test="stockCode != null" >
+	       #{stockCode},
+	     </if>
+	     <if test="state != null" >
+	       #{state},
+	     </if>
+	     <if test="createTime != null" >
+	       #{createTime},
+	     </if>
+	     <if test="nextIncomeTime != null" >
+	       #{nextIncomeTime},
+	     </if>
+	     <if test="incomeCash != null" >
+	       #{incomeCash},
+	     </if>
+	     <if test="incomeCs != null" >
+	       #{incomeCs},
+	     </if>
+	   </trim>
+	</insert>
+	
+	<update id="updateUserStock" parameterType="UserStock">
+	
+	   update user_stock 
+	   	<trim prefix="SET" suffixOverrides=",">
+	   		<if test="nextIncomeTime != null">
+	   			nextIncomeTime=#{nextIncomeTime},
+	   		</if>
+	   		<if test="incomeCs != null">
+	   			incomeCs=#{incomeCs},
+	   		</if>
+	   		<if test="state != null">
+	   			state=#{state},
+	   		</if>
+	   	</trim>
+	    where stockCode = #{stockCode}
+
+	</update>
+   
+</mapper>

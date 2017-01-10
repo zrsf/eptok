@@ -1,0 +1,63 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/*logo*/
+.e-rotate-box {
+    position: relative;
+    width: 4.6em;
+    height: 4.6em;
+    margin: auto;
+}
+/*rotatepng*/
+.e-rotate-png, .e-rotate-logo{
+    width: 4.6em;
+    height: 4.6em;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    behavior: url(js/fit/PIE.htc);
+}
+.e-rotate-logo{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+/* 模态窗 */
+.load-mask-box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+}
+.load-mask{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .3;
+    filter: alpha(opacity=30);
+}
+.load-body {
+    display: table;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.load-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+.load-container{
+    position: relative;
+    width: 740px;
+    margin: auto;
+
+}
+.load-show {
+    display: block;
+}

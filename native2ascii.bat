@@ -1,0 +1,1 @@
+mvn native2ascii:native2ascii

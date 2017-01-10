@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.yun.yweb.orders.service.impl.OrdersServiceImpl">
+    <resultMap id="orders" type="Orders">  
+        <id column="orderId" property="orderId" />
+        <result column="toUser" property="toUser" />  
+        <result column="orderCode" property="orderCode" />  
+        <result column="createTime" property="createTime" />  
+        <result column="orderStatus" property="orderStatus" />  
+        <result column="successTime" property="successTime" />  
+        <result column="orderTotalPrice" property="orderTotalPrice" />  
+        <result column="fromUser" property="fromUser" />
+        <result column="orderType" property="orderType" />
+        <result column="cashType" property="cashType" />
+        <result column="remark" property="remark" />
+        <result column="balance" property="balance" />
+    </resultMap>
+    
+   <!--查询用户-->
+   <select id="queryOrders" parameterType="Orders"  resultMap="orders">
+	    <![CDATA[
+	   		select * from orders u where 1 = 1 
+	 	]]>
+	 	<if test="userCode != null and userCode != ''">
+			 <![CDATA[
+			   and u.userCode = #{userCode}
+			 ]]>
+		</if>
+		<if test="orderCode != null and orderCode != ''">
+			 <![CDATA[
+			   and u.orderCode = #{orderCode}
+			 ]]>
+		</if>
+   </select>
+   
+   <insert id="addOrders" parameterType="Orders">
+	 insert into orders 
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+	 	 <if test="toUser != null" >
+	       toUser,
+	     </if>
+	     <if test="orderId != null" >
+	       orderId,
+	     </if>
+	     <if test="orderCode != null" >
+	       orderCode,
+	     </if>
+	     <if test="createTime != null" >
+	       createTime,
+	     </if>
+	     <if test="orderStatus != null" >
+	       orderStatus,
+	     </if>
+	     <if test="successTime != null" >
+	       successTime,
+	     </if>
+	     <if test="orderTotalPrice != null" >
+	       orderTotalPrice,
+	     </if>
+	     <if test="fromUser != null" >
+	       fromUser,
+	     </if>
+	     <if test="orderType != null" >
+	       orderType,
+	     </if>
+	     <if test="cashType != null" >
+	       cashType,
+	     </if>
+	     <if test="remark != null" >
+	       remark,
+	     </if>
+	     <if test="balance != null" >
+	       balance,
+	     </if>
+	   </trim>
+	   <trim prefix="values (" suffix=")" suffixOverrides="," >
+	     <if test="toUser != null" >
+	       #{toUser},
+	     </if>
+	     <if test="orderId != null" >
+	       #{orderId},
+	     </if>
+	     <if test="orderCode != null" >
+	       #{orderCode},
+	     </if>
+	     <if test="createTime != null" >
+	       #{createTime},
+	     </if>
+	     <if test="orderStatus != null" >
+	       #{orderStatus},
+	     </if>
+	     <if test="successTime != null" >
+	       #{successTime},
+	     </if>
+	     <if test="orderTotalPrice != null" >
+	       #{orderTotalPrice},
+	     </if>
+	     <if test="fromUser != null" >
+	       #{fromUser},
+	     </if>
+	     <if test="orderType != null" >
+	       #{orderType},
+	     </if>
+	     <if test="cashType != null" >
+	       #{cashType},
+	     </if>
+	     <if test="remark != null" >
+	       #{remark},
+	     </if>
+	     <if test="balance != null" >
+	       #{balance},
+	     </if>
+	   </trim>
+	</insert>
+   
+   
+   
+</mapper>

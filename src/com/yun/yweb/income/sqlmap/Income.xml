@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.yun.yweb.income.service.impl.IncomeServiceImpl">
+    <resultMap id="income" type="Income">  
+        <id column="incomeId" property="incomeId" />
+        <result column="orderCode" property="orderCode" />  
+        <result column="createTime" property="createTime" />  
+        <result column="orderTotalPrice" property="orderTotalPrice" />  
+        <result column="fromUser" property="fromUser" />  
+        <result column="orderType" property="orderType" />  
+        <result column="cashType" property="cashType" />  
+        <result column="incomeType" property="incomeType" />  
+    </resultMap>
+    
+   <!--查询点股-->
+   <select id="queryIncome" parameterType="Income"  resultMap="income">
+	    <![CDATA[
+	   		select * from income u where 1 = 1 
+	 	]]>
+	 	<if test="incomeType != null and incomeType != ''">
+			 <![CDATA[
+			   and u.incomeType = #{incomeType}
+			 ]]>
+		</if>
+		<if test="cashType != null and cashType != ''">
+			 <![CDATA[
+			   and u.cashType = #{cashType}
+			 ]]>
+		</if>
+   </select>
+   
+   <insert id="addIncome" parameterType="Income">
+	 insert into income 
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+	 	 <if test="toUser != null" >
+	       toUser,
+	     </if>
+	     <if test="orderCode != null" >
+	       orderCode,
+	     </if>
+	     <if test="incomeId != null" >
+	       incomeId,
+	     </if>
+	     <if test="createTime != null" >
+	       createTime,
+	     </if>
+	     <if test="orderTotalPrice != null" >
+	       orderTotalPrice,
+	     </if>
+	     <if test="fromUser != null" >
+	       fromUser,
+	     </if>
+	     <if test="orderType != null" >
+	       orderType,
+	     </if>
+	     <if test="cashType != null" >
+	       cashType,
+	     </if>
+	     <if test="incomeType != null" >
+	       incomeType,
+	     </if>
+	   </trim>
+	   <trim prefix="values (" suffix=")" suffixOverrides="," >
+	     <if test="toUser != null" >
+	       #{toUser},
+	     </if>
+	     <if test="orderCode != null" >
+	       #{orderCode},
+	     </if>
+	     <if test="incomeId != null" >
+	       #{incomeId},
+	     </if>
+	     <if test="createTime != null" >
+	       #{createTime},
+	     </if>
+	     <if test="orderTotalPrice != null" >
+	       #{orderTotalPrice},
+	     </if>
+	     <if test="fromUser != null" >
+	       #{fromUser},
+	     </if>
+	     <if test="orderType != null" >
+	       #{orderType},
+	     </if>
+	     <if test="cashType != null" >
+	       #{cashType},
+	     </if>
+	     <if test="incomeType != null" >
+	       #{incomeType},
+	     </if>
+	   </trim>
+	</insert>
+   
+</mapper>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.yun.yweb.recommendedrecord.service.impl.RecommendedRecordServiceImpl">
+    <resultMap id="recommendedRecord" type="RecommendedRecord">  
+        <id column="recommendedId" property="recommendedId" />
+        <result column="userCode" property="userCode" />  
+        <result column="state" property="state" />  
+        <result column="createTime" property="createTime" />  
+        <result column="reference" property="reference" />  
+        <result column="recommendedCode" property="recommendedCode" />
+    </resultMap>
+    
+   <!--查询点股-->
+   <select id="queryRecommendedRecord" parameterType="RecommendedRecord"  resultMap="recommendedRecord">
+	    <![CDATA[
+	   		select * from recommended_record u where 1 = 1 
+	 	]]>
+	 	<if test="recommendedId != null and recommendedId != ''">
+			 <![CDATA[
+			   and u.recommendedId = #{recommendedId}
+			 ]]>
+		</if>
+		<if test="userCode != null and userCode != ''">
+			 <![CDATA[
+			   and u.userCode = #{userCode}
+			 ]]>
+		</if>
+		<if test="state != null and state != ''">
+			 <![CDATA[
+			   and u.state = #{state}
+			 ]]>
+		</if>
+		<if test="createTime != null and createTime != ''">
+			 <![CDATA[
+			   and u.createTime = #{createTime}
+			 ]]>
+		</if>
+		
+		<if test="reference != null and reference != ''">
+			 <![CDATA[
+			   and u.reference = #{reference}
+			 ]]>
+		</if>
+		<if test="recommendedCode != null and recommendedCode != ''">
+			 <![CDATA[
+			   and u.recommendedCode = #{recommendedCode}
+			 ]]>
+		</if>
+   </select>
+   
+   <insert id="addRecommendedRecord" parameterType="RecommendedRecord">
+	 insert into recommended_record 
+	 <trim prefix="(" suffix=")" suffixOverrides="," >
+	 	 <if test="recommendedId != null" >
+	       recommendedId,
+	     </if>
+	     <if test="userCode != null" >
+	       userCode,
+	     </if>
+	     <if test="state != null" >
+	       state,
+	     </if>
+	     <if test="createTime != null" >
+	       createTime,
+	     </if>
+	     <if test="reference != null" >
+	       reference,
+	     </if>
+	     <if test="recommendedCode != null" >
+	       recommendedCode,
+	     </if>
+	   </trim>
+	   <trim prefix="values (" suffix=")" suffixOverrides="," >
+	     <if test="recommendedId != null" >
+	       #{recommendedId},
+	     </if>
+	     <if test="userCode != null" >
+	       #{userCode},
+	     </if>
+	     <if test="state != null" >
+	       #{state},
+	     </if>
+	     <if test="createTime != null" >
+	       #{createTime},
+	     </if>
+	     <if test="reference != null" >
+	       #{reference},
+	     </if>
+	     <if test="recommendedCode != null" >
+	       #{recommendedCode},
+	     </if>
+	   </trim>
+	</insert>
+	
+	<!--统计推荐记录-->
+   <select id="queryRecommendedCount" parameterType="RecommendedRecord"  resultType="java.util.HashMap">
+	    <![CDATA[
+	   		select count(*) as count,rr.userCode,rr.createTime from recommended_record rr where 1 = 1 
+	 	]]>
+	 	
+		<if test="state != null and state != ''">
+			 <![CDATA[
+			   and rr.state = #{state}
+			 ]]>
+		</if>
+		GROUP BY rr.userCode,rr.createTime
+   </select>
+	
+	<update id="updateRecommendedCount" parameterType="RecommendedRecord">
+	
+	   update recommended_record 
+	   	<trim prefix="SET" suffixOverrides=",">
+	   		<if test="state != null">
+	   			state=#{state},
+	   		</if>
+	   	</trim>
+	    where recommendedCode = #{recommendedCode}
+
+	</update>	
+   
+</mapper>

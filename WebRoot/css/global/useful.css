@@ -1,0 +1,78 @@
+/*!
+ * useful.css v1.01
+ * Author XiaoMai.
+ *time 2016-07-05
+ */
+
+/********** 常用项 **********/
+/*阴影*/
+.e-shadow {
+	border: 1px solid #ddd;
+    box-shadow: 2px 4px 3px #ddd;
+}
+
+.e-shadow-a {
+    box-shadow: 2px 4px 3px #ddd;
+}
+/*清除浮动*/
+.e-clearfix:after, 
+.e-clearfix:before, 
+.e-detail-load p a:after, 
+.e-detail-load p a:before, 
+.e-ull:before, .e-ull:after, 
+.e-new-box:before, 
+.e-new-box:after, 
+.e-route:before, 
+.e-route:after, 
+.e-check-label:after, 
+.e-check-label:before, 
+.e-Tnav:after, 
+.e-Tnav:before, 
+ul.e-getTicket:after, 
+ul.e-getTicket:before, 
+.e-cuul:after, 
+.e-cuul:before { 
+	content:"."; 
+	display:block; 
+	height:0; 
+	visibility:hidden; 
+	clear:both; 
+} 
+.e-clear {
+    clear: both;
+}
+
+/* 溢出文本显示省略号 */
+.e-spilled {
+	text-overflow:ellipsis; 
+	white-space:nowrap; 
+	overflow:hidden;
+}
+
+/* 不换行 */
+.e-nowrap {
+	white-space:nowrap;
+}
+/*********** 兼容 **********/
+
+/*去除ie自带的input删除功能 by xiaomai*/
+input::-ms-clear, input::-ms-reveal{display:none;}
+
+/*斜体改正*/
+i, em {
+    font-style: normal;
+}
+
+/* 显示隐藏 */
+.e-eshow {
+	display: block;
+}
+.e-ehide {
+	display: none;
+}
+/* 表格 */
+.ysde table {
+	table-layout:fixed;
+	word-break:break-all;
+	border-collapse:collapse
+}
